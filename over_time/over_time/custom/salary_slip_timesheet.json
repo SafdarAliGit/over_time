@@ -17,7 +17,7 @@
    "description": null,
    "docstatus": 0,
    "dt": "Salary Slip Timesheet",
-   "fetch_from": null,
+   "fetch_from": "time_sheet.custom_over_time",
    "fetch_if_empty": 0,
    "fieldname": "custom_over_time",
    "fieldtype": "Float",
@@ -25,7 +25,7 @@
    "hide_border": 0,
    "hide_days": 0,
    "hide_seconds": 0,
-   "idx": 2,
+   "idx": 3,
    "ignore_user_permissions": 0,
    "ignore_xss_filter": 0,
    "in_global_search": 0,
@@ -74,7 +74,7 @@
    "_comments": null,
    "_liked_by": null,
    "_user_tags": null,
-   "creation": "2025-01-03 21:30:49.662216",
+   "creation": "2025-01-03 21:38:30.782755",
    "default_value": null,
    "doc_type": "Salary Slip Timesheet",
    "docstatus": 0,
@@ -82,7 +82,7 @@
    "field_name": null,
    "idx": 0,
    "is_system_generated": 0,
-   "modified": "2025-01-03 21:30:49.662216",
+   "modified": "2025-01-03 21:38:30.782755",
    "modified_by": "Administrator",
    "module": null,
    "name": "Salary Slip Timesheet-main-field_order",
@@ -90,7 +90,7 @@
    "property": "field_order",
    "property_type": "Data",
    "row_name": null,
-   "value": "[\"time_sheet\", \"working_hours\", null]"
+   "value": "[\"time_sheet\", \"working_hours\", \"custom_over_time\"]"
   }
  ],
  "sync_on_migrate": 1
