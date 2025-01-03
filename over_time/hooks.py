@@ -8,7 +8,7 @@ app_license = "mit"
 
 # Includes in <head>
 # ------------------
-
+doctype_js = {"Shift Type" : "public/js/shift_type.js"}
 # include js, css files in header of desk.html
 # app_include_css = "/assets/over_time/css/over_time.css"
 # app_include_js = "/assets/over_time/js/over_time.js"
@@ -227,3 +227,4 @@ app_license = "mit"
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+required_apps = ["hrms"]

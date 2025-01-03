@@ -1,0 +1,55 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-01-03 09:43:48.505842",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_6riq",
+  "consider_over_time",
+  "department"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_6riq",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": ".5",
+   "description": "Consider Over Time Greater Than (Hours), Default is 0.5 hours",
+   "fieldname": "consider_over_time",
+   "fieldtype": "Float",
+   "label": "Consider Over Time"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "department",
+   "fieldtype": "Table MultiSelect",
+   "label": "Department",
+   "options": "Department Item"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2025-01-03 12:01:37.588416",
+ "modified_by": "Administrator",
+ "module": "Over Time",
+ "name": "Over Time Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
