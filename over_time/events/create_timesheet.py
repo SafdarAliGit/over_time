@@ -29,7 +29,11 @@ def over_time(shift, in_time, out_time):
     if first_in_datetime < shift_start_datetime:
         first_in_datetime = shift_start_datetime
 
-    over_time = (last_out_datetime - shift_end_datetime).total_seconds() / 3600
+    over_time = (last_out_datetime - first_in_datetime).total_seconds() / 3600
+    if over_time > 9:
+        over_time = over_time - 9
+    else:
+        over_time = 0
     return over_time
 
 
