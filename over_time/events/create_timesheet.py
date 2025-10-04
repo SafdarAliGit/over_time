@@ -58,7 +58,8 @@ def create_timesheets_for_employees(start_date, end_date):
             Attendance.name,
             Attendance.employee,
             Attendance.shift,
-            Attendance.working_hours
+            Attendance.working_hours,
+            Attendance.attendance_date
         )
         .where(
             (Attendance.attendance_date >= start_date)
@@ -76,12 +77,16 @@ def create_timesheets_for_employees(start_date, end_date):
     for record in attendance_data:
         ts_not_present = timesheet_not_present(record.employee, start_date, end_date)
         # overtime = over_time(record.shift, record.in_time, record.out_time)
-        overtime = record["working_hours"]
-        if overtime > 9:
-            overtime = overtime - 9
+        overtime = 0
+        working_hours = record["working_hours"]
+        holiday_work = get_holiday_work(settings["holiday_list"],record["attendance_date"])
+        if holiday_work:
+            overtime = working_hours
         else:
-            overtime = 0
-            # updated
+            if working_hours > 9:
+                overtime = working_hours - 9
+            else:
+                overtime = 0
         if overtime > consider_over_time and record.department in department and ts_not_present:
             employee = record["employee"]
             if employee not in employee_attendances:
@@ -151,7 +156,8 @@ def get_over_time_settings():
         # Extract relevant fields
         data = {
             "consider_over_time": settings.consider_over_time,
-            "department": settings.department if settings.department else []
+            "department": settings.department if settings.department else [],
+            "holiday_list": settings.holiday_list
         }
         return data
 

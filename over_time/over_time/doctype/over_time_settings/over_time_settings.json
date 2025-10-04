@@ -7,7 +7,8 @@
  "field_order": [
   "section_break_6riq",
   "consider_over_time",
-  "department"
+  "department",
+  "holiday_list"
  ],
  "fields": [
   {
@@ -27,12 +28,19 @@
    "fieldtype": "Table MultiSelect",
    "label": "Department",
    "options": "Department Item"
+  },
+  {
+   "fieldname": "holiday_list",
+   "fieldtype": "Link",
+   "label": "Holiday List",
+   "options": "Holiday List"
   }
  ],
+ "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2025-01-03 12:01:37.588416",
+ "modified": "2025-10-04 18:40:08.947191",
  "modified_by": "Administrator",
  "module": "Over Time",
  "name": "Over Time Settings",
@@ -49,6 +57,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
