@@ -18,23 +18,23 @@ def create_timesheet(**args):
     )
 
 
-def over_time(shift, in_time, out_time):
-    default_shift_type = frappe.get_doc("Shift Type", shift)
-    today = date.today()
-    first_in_datetime = datetime.combine(today, (in_time).time())
-    last_out_datetime = datetime.combine(today, (out_time).time())
-    shift_start_datetime = datetime.combine(today, (datetime.min + default_shift_type.start_time).time())
-    shift_end_datetime = datetime.combine(today, (datetime.min + default_shift_type.end_time).time())
-    # Adjust first_in_datetime if it's earlier than shift start
-    if first_in_datetime < shift_start_datetime:
-        first_in_datetime = shift_start_datetime
+# def over_time(shift, in_time, out_time):
+#     default_shift_type = frappe.get_doc("Shift Type", shift)
+#     today = date.today()
+#     first_in_datetime = datetime.combine(today, (in_time).time())
+#     last_out_datetime = datetime.combine(today, (out_time).time())
+#     shift_start_datetime = datetime.combine(today, (datetime.min + default_shift_type.start_time).time())
+#     # shift_end_datetime = datetime.combine(today, (datetime.min + default_shift_type.end_time).time())
+#     # Adjust first_in_datetime if it's earlier than shift start
+#     if first_in_datetime < shift_start_datetime:
+#         first_in_datetime = shift_start_datetime
 
-    over_time = (last_out_datetime - first_in_datetime).total_seconds() / 3600
-    if over_time > 9:
-        over_time = over_time - 9
-    else:
-        over_time = 0
-    return over_time
+#     over_time = (last_out_datetime - first_in_datetime).total_seconds() / 3600
+#     if over_time > 9:
+#         over_time = over_time - 9
+#     else:
+#         over_time = 0
+#     return over_time
 
 
 def create_timesheets_for_employees(start_date, end_date):
@@ -57,7 +57,8 @@ def create_timesheets_for_employees(start_date, end_date):
             Attendance.department,
             Attendance.name,
             Attendance.employee,
-            Attendance.shift
+            Attendance.shift,
+            Attendance.working_hours
         )
         .where(
             (Attendance.attendance_date >= start_date)
@@ -74,7 +75,13 @@ def create_timesheets_for_employees(start_date, end_date):
     employee_attendances = {}
     for record in attendance_data:
         ts_not_present = timesheet_not_present(record.employee, start_date, end_date)
-        overtime = over_time(record.shift, record.in_time, record.out_time)
+        # overtime = over_time(record.shift, record.in_time, record.out_time)
+        overtime = record["working_hours"]
+        if overtime > 9:
+            overtime = overtime - 9
+        else:
+            overtime = 0
+            # updated
         if overtime > consider_over_time and record.department in department and ts_not_present:
             employee = record["employee"]
             if employee not in employee_attendances:
