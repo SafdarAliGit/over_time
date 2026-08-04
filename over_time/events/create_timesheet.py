@@ -239,6 +239,7 @@ def calculate_over_time(in_time):
         return 0.0
 
 
+
 def normalize_in_time(in_time):
     """
     If in_time <= 09:30, return datetime set to 09:00 of the same day.
@@ -253,3 +254,4 @@ def normalize_in_time(in_time):
         return datetime.combine(in_time.date(), time(9, 0))
 
     return in_time
+
